@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sistema de inventario</title>
+
+    <link href="../inspinia/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../inspinia/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="../inspinia/css/animate.css" rel="stylesheet">
+    <link href="../inspinia/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="../kendo/css/kendo.common-bootstrap.min.css" />
+    <link rel="stylesheet" href="../kendo/css/kendo.bootstrap.min.css" />
+    <link rel="stylesheet" href="../kendo/css/kendo.bootstrap.mobile.min.css" />
+
+
+</head>
+
+<body class="">
+
+    <div id="wrapper">
+
+        <nav class="navbar-default navbar-static-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav metismenu" id="side-menu">
+                    <li class="nav-header">
+                        <div class="dropdown profile-element">
+                            <span>
+                                <img alt="image" class="img-circle" src="../inspinia/img/user.png" style="max-width: 50px" />
+                            </span>
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                <span class="clear">
+                                    <span class="block m-t-xs">
+                                        <strong class="font-bold">
+                                            <%= user.name%>
+                                        </strong>
+                                    </span>
+                                    <span class="text-muted text-xs block">Opciones
+                                        <b class="caret"></b>
+                                    </span>
+                                </span>
+                            </a>
+                            <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                                <li>
+                                    <a href="profile.html">Profile</a>
+                                </li>
+                                <li>
+                                    <a href="contacts.html">Contacts</a>
+                                </li>
+                                <li>
+                                    <a href="mailbox.html">Mailbox</a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a href="login.html">Logout</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="logo-element">
+                            IN+
+                        </div>
+                    </li>
+
+
+                    <li><a href="/"><i class="fa fa-home"></i> <span class="nav-label">Existencias</span></a></li>
+                    <li class="active">
+                            <a href="/bill">
+                                    <i class="fa fa-arrow-right"></i>
+                                    <span class="nav-label">Ingresos</span>
+                                </a>
+                        </li>
+                    <li><a href="/vouchers"><i class="fa fa-arrow-left"></i> <span class="nav-label">Egresos</span></a></li>
+                    <li><a href="/devolutions"><i class="fa fa-arrow-left"></i> <span class="nav-label">Devoluciones</span></a></li>
+                    <li><a href="/model"><i class="fa fa-cube"></i> <span class="nav-label">Códigos</span></a></li>
+                    <li><a href="/client"><i class="fa fa-address-book"></i> <span class="nav-label">Clientes</span></a></li>
+                    <li><a href="/provider"><i class="fa fa-truck"></i> <span class="nav-label">Proveedores</span></a></li>
+
+
+
+
+
+                </ul>
+
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="gray-bg">
+            <div class="row border-bottom">
+                <nav class="navbar navbar-static-top  " role="navigation" style="margin-bottom: 0">
+                    <div class="navbar-header">
+                        <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#">
+                            <i class="fa fa-bars"></i>
+                        </a>
+                        <form role="search" class="navbar-form-custom" action="search_results.html">
+                            <div class="form-group">
+
+                            </div>
+                        </form>
+                    </div>
+                    <ul class="nav navbar-top-links navbar-right">
+                        <li>
+                            <span class="m-r-sm text-muted welcome-message">Bienvenido al sistema de inventario</span>
+                        </li>
+
+                        <li>
+                            <a href="/logout">
+                                <i class="fa fa-sign-out"></i> Log out
+                            </a>
+                        </li>
+                    </ul>
+
+                </nav>
+            </div>
+
+
+            <div class="wrapper wrapper-content">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <h5>Inicio</h5>
+                                <div class="ibox-tools">
+                                    <a class="collapse-link">
+                                        <i class="fa fa-chevron-up"></i>
+                                    </a>
+
+
+
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+
+                                <div class="row">
+                                    <div id="actions">
+                                            <button onclick="openLotes()" class="btn btn-success float-right">Ingreso por lotes</button>
+                                            <button id="closeBill" class="btn btn-danger">Cerrar ingreso</button>
+                                    </div>
+                                    
+                                    <div class="col-md-12">
+                                        <div id="busqueda" class="row">
+
+                                            <br>
+
+                                            <div class="col-md-3">
+                                                <table class="table">
+                                                    <tr>
+                                                        <td>
+                                                            <strong>Proveedor:</strong>
+                                                        </td>
+                                                        <td>
+                                                            <%=data.name%>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <strong>Fecha:</strong>
+                                                        </td>
+                                                        <td>
+                                                            <%=data.date%>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <strong>Referencia:</strong>
+                                                        </td>
+                                                        <td>
+                                                            <%=data.reference%>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <strong>Creado por:</strong>
+                                                        </td>
+                                                        <td>
+                                                            <%=data.user%>
+                                                        </td>
+                                                    </tr>
+
+                                                </table>
+
+
+
+
+
+                                            </div>
+                                            <div class="col-md-9">
+
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="code">Código:</label>
+                                                            <input autofocus type="text" class="form-control" validationMessage="Selecciona un producto" required id="code2" name="code"
+                                                                style="width: 100%" placeholder="Buscar por código">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-8">
+                                                        <div class="form-group">
+                                                            <label for="pwd">Nombre del producto:</label>
+                                                            <input type="text" class="form-control" validationMessage="Nombre" name="description" required id="nameProduct" style="width: 100%">
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+
+                                                <div class="row">
+
+                                                    <form id="formsave" disabled>
+                                                        <input type="hidden" name="bill" value="<%= bill %>">
+                                                        <input type="hidden" required name="code" id="modelProduct" value="">
+
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <label for="pwd">Almacén:</label>
+                                                                <input type="text" class="form-control" validationMessage="Selecciona un almacén" name="location" required id="location"
+                                                                    style="width: 100%">
+                                                            </div>
+
+                                                        </div>
+
+
+
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <label for="pwd">Observación:</label>
+                                                                <textarea style="resize: none" class="form-control" name="observation" id="" rows="2" placeholder="Ingrese una observación"></textarea>
+
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <div class="form-group">
+                                                                <label for="pwd">Número de serie:</label>
+                                                                <input type="text" class="form-control" validationMessage="Ingresa el número de serie" name="barcode" required id="barcode"
+                                                                    placeholder="Número de serie" style="width: 100%">
+                                                                <button type="button" onclick="generateBarcode()" style="width: 100%" class="btn btn-default">Generar No. de serie</button>
+                                                                <span id="manchego"></span>
+                                                            </div>
+
+                                                        </div>
+
+
+
+                                                        <div class="col-md-1">
+                                                            <label for="pwd">&nbsp</label>
+                                                            <button id="save" type="button" class="btn btn-primary">Guardar</button>
+
+                                                        </div>
+                                                    </form>
+
+
+
+
+                                                </div>
+
+
+
+
+                                            </div>
+
+
+
+
+
+
+                                        </div>
+
+                                        <div class="row">
+
+
+                                        </div>
+                                        <br>
+                                        <button id="btnPrin" data-toggle="modal" data-target="#myModal2" class="btn btn-primary">Generar reporte</button>
+                                        <hr>
+                                        <div id="grid2" tabindex="0"></div>
+
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+                </div>
+
+
+            </div>
+            <div class="footer">
+                <div class="pull-right">
+                    Cineto Telecomunicaciones S.A.
+                </div>
+                <div>
+                    <strong>Copyright</strong> Cineto Telecomunicaciones S.A. &copy; 2017
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="modal fade" id="myModal2" role="dialog">
+        <div class="modal-dialog modal-lg">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Reporte</h4>
+                </div>
+                <div class="modal-body">
+                    <button onclick="print()" class="btn btn-primary">Imprimir</button>
+                    <div id="print" style="min-width: 210mm; font-family: 'Arial Narrow'">
+
+                        <table style="width: 100%">
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <center>
+                                        <img class="" src="../image/logo.svg" width="280px" />
+
+
+
+
+                                    </center>
+                                </td>
+                                <td style="text-align: right">
+                                    <h5>ING-
+                                        <%=data.id%>
+                                    </h5>
+                                </td>
+                            </tr>
+                        </table>
+
+
+                        <hr>
+                        <center>
+                            <strong style="font-size: 18px">Reporte de ingreso</strong>
+                        </center>
+                        <table style="width: 100%; font-size: 12px">
+                            <tr>
+                                <td>
+
+                                    <address>
+                                        <br>
+                                        <strong>
+                                            <%=data.name%>
+                                        </strong>
+                                        <br>
+                                        <%=data.address%>
+                                            <br>
+                                            <%=data.email%>,
+                                                <br>
+                                                <%=data.phone%>
+                                    </address>
+                                </td>
+                                <td style="text-align: right">
+
+                                    <address>
+                                        <strong>Fecha:</strong>
+                                        <%=data.date%>
+                                            <br>
+                                            <strong>Referencia:</strong>
+                                            <%=data.reference%>
+
+                                    </address>
+                                </td>
+                            </tr>
+
+                        </table>
+                        <hr>
+                        <table id="Vouchers" class="table ">
+                            <thead style="font-size:13px;">
+                                <tr>
+                                    <th style="text-align: center">Ítem</th>
+                                    <th style="text-align: center">Descripción</th>
+                                    <th style="text-align: center">Código</th>
+                                    <th style="text-align: center">Serie</th>
+                                    <th style="text-align: center">Cant.</th>
+                                    <th style="text-align: center">Observación</th>
+                                </tr>
+                            </thead>
+                            <tbody style="font-size:11px;">
+                                <tr w3-repeat="voucherss">
+                                    <td style="text-align: center">{{num}}</td>
+                                    <td style="text-align: center">{{description}}</td>
+                                    <td style="text-align: center">{{code}}</td>
+                                    <td style="text-align: center">{{barcode}}</td>
+                                    <td style="text-align: center">{{count}}</td>
+                                    <td style="text-align: center">
+                                        {{observation}}
+                                    </td>
+                                </tr>
+
+
+                            </tbody>
+                        </table>
+                        <hr>
+
+                        <div class="well m-t">
+                            <strong>Comentario</strong>
+                            <input class="form-control" type="text">
+                        </div>
+
+
+
+                        <table style="width: 100%; border: 1; font-size: 12px ">
+                            <tr>
+                                <td>
+                                    <center>
+                                        <p>
+                                            ENTREGADO POR
+                                            <br>
+                                            <br>
+                                            <br>
+                                            <br>
+                                            <br> _______________________________
+                                            <br>
+                                            <br>
+                                            <input type="text" style="border: 0; width: 100%; text-align: center; text-transform: uppercase">
+                                        </p>
+                                    </center>
+
+
+                                </td>
+
+                                <td>
+                                    <center>
+                                        <p>
+                                            REPRESENTANTE CINETO
+                                            <br>
+                                            <br>
+                                            <br>
+                                            <br>
+                                            <br> _______________________________
+                                            <br>
+                                            <br>
+                                            <%=data.user%>
+                                        </p>
+                                    </center>
+
+
+                                </td>
+
+                                <td>
+                                    <center>
+                                        <p>
+                                            RECIBIDO POR
+                                            <br>
+                                            <br>
+                                            <br>
+                                            <br>
+                                            <br> _______________________________
+                                            <br>
+                                            <br>
+                                            <input type="text" style="border: 0; width: 100%; text-align: center; text-transform: uppercase">
+                                        </p>
+                                    </center>
+
+
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="myModalLotes" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Ingreso por lotes</h4>
+                </div>
+                <div class="modal-body">
+                    <a class="btn btn-link" href="../PLANTILLA.csv"> Descargar plantilla</a><br><br>
+                    <form class="form-horizontal ">
+
+                        <fieldset>
+                            <label for="csvFileInput"> <strong>Seleccionar archivo CSV:</strong>
+                                                                                                                                                    </label>
+                            <input type="file" class="" id="csvFileInput" onchange="handleFiles(this.files)" accept=".csv"><br>
+                            <!-- <i id="spinner" class="fa fa-spinner fa-spin fa-2x" aria-hidden="true"></i> -->
+
+                        </fieldset>
+                    </form>
+                   
+                </div>
+                <div class="tabs-container">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#tab-1"> Productos</a></li>
+                        <li class=""><a data-toggle="tab" href="#tab-2">Nuevos códigos</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="tab-1" class="tab-pane active">
+                            <div class="panel-body">
+                                    <button class="btn btn-primary" onclick="iniciar()">Iniciar ingreso</button>
+                                <div id="output2" style="height: 150; background-color: white"></div>
+                            </div>
+                        </div>
+                        <div id="tab-2" class="tab-pane">
+                            <div class="panel-body">
+                                    <button class="btn btn-primary" onclick="change()">Cambiar</button>
+                                <div id="output" style="height: 150; background-color: white"></div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Registrar modelo</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="formSaveModel">
+
+
+                        <div class="form-group">
+                            <label for="code">Código:</label>
+                            <input autofocus type="text" class="form-control" validationMessage="Selecciona un producto" required id="codeModal" name="code"
+                                style="width: 100%">
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="pwd">Nombre del producto:</label>
+                            <input type="text" class="form-control" validationMessage="Nombre" name="description" required id="description" style="width: 100%">
+                        </div>
+
+
+
+
+                        <div class="form-group">
+                            <label for="pwd">Stock mín:</label>
+                            <input type="number" validationMessage="Ingresa el stock mínimo" class="form-control" required name="stockmin" placeholder="Stock mínimo"
+                                id="stockmin" style="width: 100%">
+                        </div>
+
+
+
+
+                        <div class="form-group">
+                            <label for="pwd">Unidad de medida:</label>
+                            <input type="text" class="form-control" required name="unit" id="unit" style="width: 100%">
+                        </div>
+
+
+
+
+
+
+                        <div class="form-group">
+                            <label for="pwd">Categoría:</label>
+                            <input type="text" class="form-control" required name="category" id="category" style="width: 100%">
+                        </div>
+
+
+
+
+
+                        <div class="form-group">
+                            <label for="pwd">Marca:</label>
+                            <input type="text" class="form-control" required name="brand" id="brand" style="width: 100%">
+                        </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button id="saveModel" type="button" class="btn btn-primary">Guardar</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Mainly scripts -->
+    <script src="../inspinia/js/jquery-3.1.1.min.js"></script>
+    <script src="../inspinia/js/bootstrap.min.js"></script>
+    <script src="../inspinia/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="../inspinia/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+    <!-- Custom and plugin javascript -->
+    <script src="../inspinia/js/inspinia.js"></script>
+    <script src="../inspinia/js/plugins/pace/pace.min.js"></script>
+    <script src="../kendo/js/kendo.all.min.js"></script>
+    <script src="../kendo/js/jszip.min.js"></script>
+    <script src="../kendo/js/kendo.messages.es-MX.min.js"></script>
+    <script src="../js/w3.js"></script>
+    <script src="../js/jquery.PrintArea.js"></script>
+    <script src="../js/datatables.min.js"></script>
+   
+
+    <script>
+        $.get("/bill/read/<%=bill%>", function (data2) {
+            console.log($('#Vouchers'))
+
+            w3.displayObject("Vouchers", { voucherss: data2 });
+
+        });
+
+        function print() {
+            $('#print').printArea();
+
+        }
+        function openLotes() {
+     
+            $('#myModalLotes').modal();
+        }
+        
+    </script>
+
+    <% if (bill) { %>
+        <script>
+            var bill = '<%= bill %>';
+            var userBill = '<%=data.iduser%>';
+            var userSession = '<%=user.id%>';
+            var user = '<%=data.user%>';
+            var reference = '<%=data.reference%>';
+        </script>
+        <% } %>
+
+            <% if (data.state == 0) { %>
+                <script src="../logic/product.1.js"></script>
+                <% } else { %>
+                    <script src="../logic/product.2.js"></script>
+                    <% } %>
+
+                    <script src="../logic/lotes.js"></script>
+
+
+
+</body>
+
+</html>

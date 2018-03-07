@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sistema de inventario</title>
+
+    <link href="/inspinia/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/inspinia/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="/inspinia/css/animate.css" rel="stylesheet">
+    <link href="/inspinia/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="/kendo/css/kendo.common-bootstrap.min.css" />
+    <link rel="stylesheet" href="/kendo/css/kendo.bootstrap.min.css" />
+    <link rel="stylesheet" href="/kendo/css/kendo.bootstrap.mobile.min.css" />
+
+
+</head>
+
+<body class="">
+
+    <div id="wrapper">
+
+        <nav class="navbar-default navbar-static-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav metismenu" id="side-menu">
+                    <li class="nav-header">
+                        <div class="dropdown profile-element">
+                            <span>
+                                <img alt="image" class="img-circle" src="/inspinia/img/user.png" style="max-width: 50px" />
+                            </span>
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                <span class="clear">
+                                    <span class="block m-t-xs">
+                                        <strong class="font-bold">
+                                            <%= user.name%>
+                                        </strong>
+                                    </span>
+                                   
+                                </span>
+                            </a>
+                          
+                        </div>
+                        <div class="logo-element">
+                            IN+
+                        </div>
+                    </li>
+                    <li><a href="/admin"><i class="fa fa-home"></i> <span class="nav-label">Detalle de existencia</span></a></li>
+                    <li class="active"><a href="/billAdmin"><i class="fa fa-home"></i> <span class="nav-label"> Detalle de ingresos</span></a></li>
+                    <li><a href="/voucherAdmin"><i class="fa fa-home"></i> <span class="nav-label">Detalles de egresos</span></a></li>
+                    <li><a href="/devolutionAdmin"><i class="fa fa-home"></i> <span class="nav-label">Detalle devoluciones</span></a></li>
+                    <li><a href="/product/price"><i class="fa fa-home"></i> <span class="nav-label">Costos</span></a></li>
+                    <li><a href="/brand"><i class="fa fa-home"></i> <span class="nav-label">Marcas</span></a></li>
+                    <li><a href="/category"><i class="fa fa-home"></i> <span class="nav-label">Categorías</span></a></li>
+                    <li><a href="/unit"><i class="fa fa-home"></i> <span class="nav-label">Unidades de medida</span></a></li>
+                    <li><a href="/location"><i class="fa fa-home"></i> <span class="nav-label">Almacenes</span></a></li>
+                    <li><a href="/user"><i class="fa fa-home"></i> <span class="nav-label">Usuarios</span></a></li>
+                    <li><a href="/client/Admin"><i class="fa fa-home"></i> <span class="nav-label">Clientes</span></a></li>
+                    <li><a href="/provider/Admin"><i class="fa fa-home"></i> <span class="nav-label">Proveedores</span></a></li>
+                    <li><a href="/events"><i class="fa fa-home"></i> <span class="nav-label">Eventos</span></a></li>
+                    
+                </ul>
+
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="gray-bg">
+            <div class="row border-bottom">
+                <nav class="navbar navbar-static-top  " role="navigation" style="margin-bottom: 0">
+                    <div class="navbar-header">
+                        <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#">
+                            <i class="fa fa-bars"></i>
+                        </a>
+                        <form role="search" class="navbar-form-custom" action="search_results.html">
+                            <div class="form-group">
+
+                            </div>
+                        </form>
+                    </div>
+                    <ul class="nav navbar-top-links navbar-right">
+                        <li>
+                            <span class="m-r-sm text-muted welcome-message">Bienvenido al sistema de inventario</span>
+                        </li>
+
+                        <li>
+                            <a href="/logout">
+                                <i class="fa fa-sign-out"></i> Log out
+                            </a>
+                        </li>
+                    </ul>
+
+                </nav>
+            </div>
+
+
+            <div class="wrapper wrapper-content">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <h5>Inicio</h5>
+                                <div class="ibox-tools">
+                                    <a class="collapse-link">
+                                        <i class="fa fa-chevron-up"></i>
+                                    </a>
+
+
+
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+
+                                <div class="row">
+
+                                    <div class="col-md-12">
+                                        <div id="busqueda" class="row">
+                                            <br>
+                                            <div class="col-md-3">
+                                                <table class="table">
+                                                    <tr>
+                                                        <td>
+                                                            <strong>Proveedor:</strong>
+                                                        </td>
+                                                        <td>
+                                                            <%=data.name%>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <strong>Fecha:</strong>
+                                                        </td>
+                                                        <td>
+                                                            <%=data.date%>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <strong>Referencia:</strong>
+                                                        </td>
+                                                        <td>
+                                                            <%=data.reference%>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <strong>Creado por:</strong>
+                                                        </td>
+                                                        <td>
+                                                            <%=data.user%>
+                                                        </td>
+                                                    </tr>
+
+                                                </table>
+
+                                               
+
+
+
+                                            </div>
+                                         
+
+
+
+
+
+
+                                        </div>
+
+                                        <div class="row">
+
+
+                                        </div>
+                                        <br>
+                                        <button id="btnPrin" data-toggle="modal" data-target="#myModal2" class="btn btn-primary">Generar reporte</button>
+                                        <hr>
+                                        <div id="grid2" tabindex="0"></div>
+
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+                </div>
+
+
+            </div>
+            <div class="footer">
+                <div class="pull-right">
+                    Cineto Telecomunicaciones S.A.
+                </div>
+                <div>
+                    <strong>Copyright</strong> Cineto Telecomunicaciones S.A. &copy; 2017
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="modal fade" id="myModal2" role="dialog">
+        <div class="modal-dialog modal-lg">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Reporte</h4>
+                </div>
+                <div class="modal-body">
+                    <button onclick="print()" class="btn btn-primary">Imprimir</button>
+                    <div id="print" style="min-width: 210mm; font-family: 'Arial Narrow'">
+
+                        <table style="width: 100%">
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <center>
+                                        <img class="" src="/image/logo.svg" width="280px" />
+
+                                    </center>
+                                </td>
+                                <td style="text-align: right">
+                                    <h5>ING-
+                                        <%=data.id%>
+                                    </h5>
+                                </td>
+                            </tr>
+                        </table>
+
+
+                        <hr>
+                        <center>
+                            <strong style="font-size: 18px">Reporte de ingreso</strong>
+                        </center>
+                        <table style="width: 100%; font-size: 12px">
+                            <tr>
+                                <td>
+
+                                    <address>
+                                        <br>
+                                        <strong>
+                                            <%=data.name%>
+                                        </strong>
+                                        <br>
+                                        <%=data.address%>
+                                            <br>
+                                            <%=data.email%>,
+                                                <br>
+                                                <%=data.phone%>
+                                    </address>
+                                </td>
+                                <td style="text-align: right">
+
+                                    <address>
+                                        <strong>Fecha:</strong>
+                                        <%=data.date%>
+                                            <br>
+                                            <strong>Referencia:</strong>
+                                            <%=data.reference%>
+
+                                    </address>
+                                </td>
+                            </tr>
+
+                        </table>
+                        <hr>
+                        <table id="Voucher" class="table "  >
+                            <thead style="font-size:13px;">
+                                <tr>
+                                    <th style="text-align: center">Ítem</th>
+                                    <th style="text-align: center">Descripción</th>
+                                    <th style="text-align: center">Código</th>
+                                    <th style="text-align: center">Serie</th>
+                                    <th style="text-align: center">Cant.</th>
+                                    <th style="text-align: center">Observación</th>
+                                </tr>
+                            </thead>
+                            <tbody style="font-size:11px;">
+                                <tr w3-repeat="vouchers">
+                                    <td style="text-align: center">{{num}}</td>
+                                    <td style="text-align: center">{{description}}</td>
+                                    <td style="text-align: center">{{code}}</td>
+                                    <td style="text-align: center">{{barcode}}</td>
+                                    <td style="text-align: center">{{count}}</td>
+                                    <td>
+                                        <input style="border: 0; width: 100%" type="text" value="{{observation}}">
+                                    </td>
+                                </tr>
+
+
+                            </tbody>
+                        </table>
+                        <hr>
+
+                        <div class="well m-t">
+                            <strong>Comentario</strong>
+                            <input class="form-control" type="text">
+                        </div>
+
+
+
+                        <table style="width: 100%; border: 1; font-size: 12px ">
+                            <tr>
+                                    <td>
+                                            <center>
+                                                <p>
+                                                    ENTREGADO POR
+                                                    <br>
+                                                    <br>
+                                                    <br>
+                                                    <br>
+                                                    <br> _______________________________
+                                                    <br>
+                                                    <br>
+                                                    <input type="text" style="border: 0; width: 100%; text-align: center; text-transform: uppercase">
+                                                </p>
+                                            </center>
+        
+        
+                                        </td>
+
+                                <td>
+                                    <center>
+                                        <p>
+                                            REPRESENTANTE CINETO
+                                            <br>
+                                            <br>
+                                            <br>
+                                            <br>
+                                            <br> _______________________________
+                                            <br>
+                                            <br>
+                                            <%=data.user%>
+                                        </p>
+                                    </center>
+
+
+                                </td>
+
+                                <td>
+                                        <center>
+                                            <p>
+                                                RECIBIDO POR
+                                                <br>
+                                                <br>
+                                                <br>
+                                                <br>
+                                                <br> _______________________________
+                                                <br>
+                                                <br>
+                                                <input type="text" style="border: 0; width: 100%; text-align: center; text-transform: uppercase">
+                                            </p>
+                                        </center>
+    
+    
+                                    </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Registrar modelo</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="formSaveModel">
+
+
+                        <div class="form-group">
+                            <label for="code">Código:</label>
+                            <input autofocus type="text" class="form-control" validationMessage="Selecciona un producto" required id="codeModal" name="code"
+                                style="width: 100%">
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="pwd">Nombre del producto:</label>
+                            <input type="text" class="form-control" validationMessage="Nombre" name="description" required id="description" style="width: 100%">
+                        </div>
+
+
+
+
+                        <div class="form-group">
+                            <label for="pwd">Stock mín:</label>
+                            <input type="number" validationMessage="Ingresa el stock mínimo" class="form-control" required name="stockmin" placeholder="Stock mínimo"
+                                id="stockmin" style="width: 100%">
+                        </div>
+
+
+
+
+                        <div class="form-group">
+                            <label for="pwd">Unidad de medida:</label>
+                            <input type="text" class="form-control" required name="unit" id="unit" style="width: 100%">
+                        </div>
+
+
+
+
+
+
+                        <div class="form-group">
+                            <label for="pwd">Categoría:</label>
+                            <input type="text" class="form-control" required name="category" id="category" style="width: 100%">
+                        </div>
+
+
+
+
+
+                        <div class="form-group">
+                            <label for="pwd">Marca:</label>
+                            <input type="text" class="form-control" required name="brand" id="brand" style="width: 100%">
+                        </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button id="saveModel" type="button" class="btn btn-primary">Guardar</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Mainly scripts -->
+    <script src="/inspinia/js/jquery-3.1.1.min.js"></script>
+    <script src="/inspinia/js/bootstrap.min.js"></script>
+    <script src="/inspinia/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="/inspinia/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+    <!-- Custom and plugin javascript -->
+    <script src="/inspinia/js/inspinia.js"></script>
+    <script src="/inspinia/js/plugins/pace/pace.min.js"></script>
+    <script src="/kendo/js/kendo.all.min.js"></script>
+    <script src="/kendo/js/jszip.min.js"></script>
+    <script src="/kendo/js/kendo.messages.es-MX.min.js"></script>
+    <script src="/js/w3.js"></script>
+    <script src="/js/jquery.PrintArea.js"></script>
+    
+
+    <script>
+     
+    </script>
+
+    <% if (bill) { %>
+        <script>
+            var bill = '<%= bill %>';
+            var userBill = '<%=data.iduser%>';
+            var userSession = '<%=user.id%>';
+            var user = '<%=data.user%>';
+            var reference = '<%=data.reference%>';
+        </script>
+        <% } %>
+
+          
+        <script src="/logic/productAdmin.js"></script>
+
+
+
+</body>
+
+</html>

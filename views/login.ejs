@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sistema de inventario</title>
+
+    <link href="../inspinia/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../inspinia/font-awesome/css/font-awesome.css" rel="stylesheet">
+
+    <link href="../inspinia/css/animate.css" rel="stylesheet">
+    <link href="../inspinia/css/style.css" rel="stylesheet">
+
+</head>
+
+<body class="gray-bg">
+
+    <div class="middle-box text-center loginscreen animated fadeInDown">
+        <div>
+            <div>
+
+               <br><br><br><br><br>
+               <center>
+                <img src="../images/logo.png" alt="logo_cineto" style="width: 100%">
+               </center>
+                
+                <br>
+            </div>
+         
+                <!--Continually expanded and constantly improved Inspinia Admin Them (IN+)-->
+            </p>
+      
+            <form class="m-t" role="form" action="/user/login" method="POST">
+                <div class="form-group">
+                        <% if (message) { %>
+                            <div class="alert alert-danger">
+                                <strong>Error!</strong>
+                                <%=message%>
+                            </div>
+            
+                            <% } %>
+                    <input autofocus type="text" class="form-control" name="username" placeholder="Nombre de usuario" required="">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" name="password" placeholder="Contraseña" required="">
+                </div>
+                <button type="submit" class="btn btn-primary block full-width m-b">Aceptar</button>
+
+                
+            </form>
+            
+            <p class="m-t"> <small>Cineto Telecomunicaciones S.A.</small> </p>
+        </div>
+    </div>
+
+    <!-- Mainly scripts -->
+    <script src="../inspinia/js/jquery-3.1.1.min.js"></script>
+    <script src="../inspinia/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>
