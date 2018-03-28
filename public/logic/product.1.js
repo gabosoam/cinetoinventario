@@ -8,6 +8,14 @@ $("#save").on("click", function () {
     }
 });
 
+jQuery(document).bind("keyup keydown", function (e) {
+    if (e.ctrlKey && e.keyCode == 80) {
+      
+        return false;
+    }
+});
+
+
 
 function generateBarcode() {
     $.get("/generateBarcode", function (data) {
@@ -413,10 +421,10 @@ $(document).ready(function () {
             height: 400,
             resizable: true,
             scrollable: true,
-            columnMenu: true,
+            columnMenu: false,
             filterable: true,
             resizable: true,
-            groupable: true,
+            groupable: false,
 
             pageable: { refresh: true, pageSizes: true, },
             pdf: {
@@ -443,11 +451,11 @@ $(document).ready(function () {
             columns: [
                 { field: 'id', hidden: true },
                 { field: "Producto", hidden: true, aggregates: ["min", "max", "count"], groupHeaderTemplate: "Cantidad: #= count#" },
-                { field: "barcode", aggregates: ["count"], title: "No. de serie", filterable: { search: true }, width: '20%' },
-                { field: "code", title: "Código", filterable: { search: true }, width: '15%' },
-                { field: "description", title: "Producto", filterable: { search: true } },
-                { field: "idlocation", title: "Almacén", values: data },
-                { field: "observation", title: "Observación" },
+                { field: "barcode", aggregates: ["count"], title: "No. de serie", filterable: { search: true, multi: true }, width: '20%' },
+                { field: "code", title: "Código", filterable: { search: true, multi: true }, width: '15%' },
+                { field: "description", title: "Producto", filterable: { search: true, multi: true } },
+                { field: "idlocation", title: "Almacén", values: data, filterable: { search: true, multi: true } },
+                { field: "observation", title: "Observación", filterable: { search: true, multi: true } },
                 { field: "bill", title: "Factura", width: '1px' },
                 { command: ["edit", "destroy"], title: "Acciones" }],
             editable: "inline"

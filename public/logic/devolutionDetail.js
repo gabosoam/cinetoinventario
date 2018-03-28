@@ -13,6 +13,13 @@ $("#saveModel").on("click", function () {
     }
 });
 
+jQuery(document).bind("keyup keydown", function (e) {
+    if (e.ctrlKey && e.keyCode == 80) {
+      
+        return false;
+    }
+});
+
 $("#closeVoucher").on("click", function () {
     if (userBill == userSession) {
         const confirmation = confirm('Al cerrar la salida ya no se podrá agregar ni eliminar productos a esta orden \n ¿Desea continuar?');
@@ -367,10 +374,10 @@ $(document).ready(function () {
         dataSource: dataSource,
         height: 400,
         scrollable: true,
-        columnMenu: true,
+        columnMenu: false,
         filterable: true,
         resizable: true,
-        groupable: true,
+        groupable: false,
 
         pageable: { refresh: true, pageSizes: true, },
         pdf: {

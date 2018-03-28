@@ -34,11 +34,7 @@
                             <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold"><%= user.name%></strong>
                              </span> <span class="text-muted text-xs block">Opciones <b class="caret"></b></span> </span> </a>
                             <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                                <li><a href="profile.html">Profile</a></li>
-                                <li><a href="contacts.html">Contacts</a></li>
-                                <li><a href="mailbox.html">Mailbox</a></li>
-                                <li class="divider"></li>
-                                <li><a href="login.html">Logout</a></li>
+                                    <li><a data-toggle="modal" data-target="#myModal">Cambiar contraseña</a></li>
                             </ul>
                         </div>
                         <div class="logo-element">
@@ -142,6 +138,8 @@
         </script>
         <% } %>
 
+        <div id="modal"></div>
+
 
             <script type="text/javascript" src="/socket.io/socket.io.js"></script>
             <!-- Mainly scripts -->
@@ -156,7 +154,7 @@
             <script src="../kendo/js/kendo.all.min.js"></script>
             <script src="../kendo/js/jszip.min.js"></script>
             <script src="../kendo/js/kendo.messages.es-MX.min.js"></script>
-
+            <script src="../logic/changePassword.js"></script>
             <script src="../logic/model.js"></script>
 
 

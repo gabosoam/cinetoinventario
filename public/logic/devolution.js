@@ -81,7 +81,7 @@ $(document).ready(function () {
                     { field: "client", values: clients,editor: userNameComboBoxEditor, title: "Cliente", filterable: { search: true, multi:true }  },
                     { field: "date", title: "Fecha",  format: "{0:dd/MM/yyyy}" },
                     { field: "reference", title: "Referencia", filterable: { search: true,multi:true } },
-                    { field: "user", values: users, title: "Creado por" },
+                    { field: "user", values: users, title: "Creado por", filterable: { search: true,multi:true } },
                     { command: ["edit", "destroy", { text: "Ver detalles", click: showDetails, iconClass: 'icon icon-chart-column' }], title: "Acciones" }],
                 editable: "popup"
             });

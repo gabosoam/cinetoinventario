@@ -10,6 +10,13 @@ $("#save").on("click", function () {
     }
 });
 
+jQuery(document).bind("keyup keydown", function (e) {
+    if (e.ctrlKey && e.keyCode == 80) {
+      
+        return false;
+    }
+});
+
 $("#saveModel").on("click", function () {
     if (validatorModel.validate()) {
         saveModel();

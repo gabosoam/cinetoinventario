@@ -4,6 +4,13 @@ $(document).ready(function () {
     $( "#formsave" ).hide();
     $( "#busqueda" ).hide();
     $( "#actions" ).hide();
+
+    jQuery(document).bind("keyup keydown", function (e) {
+        if (e.ctrlKey && e.keyCode == 80) {
+          
+            return false;
+        }
+    });
    
     
 
@@ -82,10 +89,10 @@ $(document).ready(function () {
         dataSource: dataSource,
         height: 400,
         scrollable: true,
-        columnMenu: true,
+        columnMenu: false,
         filterable: true,
         resizable: true,
-        groupable: true,
+        groupable: false,
 
 
         pageable: { refresh: true, pageSizes: true, },
@@ -112,11 +119,11 @@ $(document).ready(function () {
         },
         columns: [
             { field: "Producto", hidden: true, aggregates: ["min", "max", "count"], groupHeaderTemplate: "Cantidad: #= count#" },
-            { field: "barcode", aggregates: ["count"], title: "No. de serie", filterable: { search: true }, width: '20%' },
-            { field: "code", title: "Código", filterable: { search: true } },
-            { field: "description", title: "Producto", filterable: { search: true } },
-            { field: "location", title: "Almacén" },
-            { field: "observation", title: "Observación" },
+            { field: "barcode", aggregates: ["count"], title: "No. de serie", filterable: { search: true, multi: true }, width: '20%' },
+            { field: "code", title: "Código", filterable: { search: true, multi: true } },
+            { field: "description", title: "Producto", filterable: { search: true, multi: true } },
+            { field: "location", title: "Almacén", filterable: { search: true, multi: true } },
+            { field: "observation", title: "Observación", filterable: { search: true, multi: true } },
             { field: "bill", title: "Factura", width: '1px' }],
         editable: "inline"
     })

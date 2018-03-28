@@ -44,19 +44,7 @@
                                 </span>
                             </a>
                             <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                                <li>
-                                    <a href="profile.html">Profile</a>
-                                </li>
-                                <li>
-                                    <a href="contacts.html">Contacts</a>
-                                </li>
-                                <li>
-                                    <a href="mailbox.html">Mailbox</a>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <a href="login.html">Logout</a>
-                                </li>
+                                    <li><a data-toggle="modal" data-target="#myModalpass">Cambiar contraseña</a></li>
                             </ul>
                         </div>
                         <div class="logo-element">
@@ -484,41 +472,112 @@
                     <h4 class="modal-title">Ingreso por lotes</h4>
                 </div>
                 <div class="modal-body">
-                    <a class="btn btn-link" href="../PLANTILLA.csv"> Descargar plantilla</a><br><br>
-                    <form class="form-horizontal ">
-
-                        <fieldset>
-                            <label for="csvFileInput"> <strong>Seleccionar archivo CSV:</strong>
-                                                                                                                                                    </label>
-                            <input type="file" class="" id="csvFileInput" onchange="handleFiles(this.files)" accept=".csv"><br>
-                            <!-- <i id="spinner" class="fa fa-spinner fa-spin fa-2x" aria-hidden="true"></i> -->
-
-                        </fieldset>
-                    </form>
+                        <div class="panel-group" id="accordion">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h5 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">1. Descargar la plantilla desde el siguiente enlace</a>
+                                        </h5>
+                                    </div>
+                                    <div id="collapseOne" class="panel-collapse collapse in">
+                                        <div class="panel-body">
+                                            <a href="../PLANTILLA.csv">Plantilla.csv</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">2. Abrir el archivo con una apliación de hojas de cálculo como por ejemplo Microsoft
+                                                Excel. (Ver imagen)</a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseTwo" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <img width="100%" src="../manual/plantilla.png" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">3. Ingresar los datos y guardar. (Ver imagen)</a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseThree" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <img src="../manual/ingreso.png" width="100%" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+        
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">4. Cargar el archivo al sistema desde el siguiente enlace.</a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapse4" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <form class="form-horizontal ">
+        
+                                                <fieldset>
+                                                    <label for="csvFileInput">
+                                                        <strong>Seleccionar archivo CSV:</strong>
+                                                    </label>
+                                                    <input type="file" class="" id="csvFileInput" onchange="handleFiles(this.files)" accept=".csv">
+                                                    <br>
+                                                    <!-- <i id="spinner" class="fa fa-spinner fa-spin fa-2x" aria-hidden="true"></i> -->
+        
+                                                </fieldset>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+        
+        
+        
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse5">5. Comprobar si existen nuevos códigos</a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapse5" class="panel-collapse collapse">
+                                        <div class="panel-body">
+        
+                                            <p>En caso de que existan nuevos códigos se mostrará una lista en caso contrario puede continuar
+                                                con el siguiente paso</p>
+                                            <div id="output" style="height: 150; background-color: white"></div>
+        
+                                        </div>
+                                    </div>
+                                </div>
+        
+        
+        
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse6">6. Iniciar ingreso</a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapse6" class="panel-collapse collapse">
+                                        <div class="panel-body">
+        
+                                            <button class="btn btn-success" onclick="iniciar()">Iniciar ingreso</button>
+                                            <div id="output2" style="height: 150; background-color: white"></div>
+        
+        
+        
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                   
                    
                 </div>
-                <div class="tabs-container">
-                    <ul class="nav nav-tabs">
-                        <li class="active"><a data-toggle="tab" href="#tab-1"> Productos</a></li>
-                        <li class=""><a data-toggle="tab" href="#tab-2">Nuevos códigos</a></li>
-                    </ul>
-                    <div class="tab-content">
-                        <div id="tab-1" class="tab-pane active">
-                            <div class="panel-body">
-                                    <button class="btn btn-primary" onclick="iniciar()">Iniciar ingreso</button>
-                                <div id="output2" style="height: 150; background-color: white"></div>
-                            </div>
-                        </div>
-                        <div id="tab-2" class="tab-pane">
-                            <div class="panel-body">
-                                    <button class="btn btn-primary" onclick="change()">Cambiar</button>
-                                <div id="output" style="height: 150; background-color: white"></div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div>
+                
             </div>
 
         </div>
@@ -596,6 +655,15 @@
         </div>
     </div>
 
+    <div id="modal"></div>
+
+    <% if (user) { %>
+        <script>
+            var user = '<%= user.id %>'
+        </script>
+        <% } %>
+   
+
 
 
     <!-- Mainly scripts -->
@@ -613,7 +681,9 @@
     <script src="../js/w3.js"></script>
     <script src="../js/jquery.PrintArea.js"></script>
     <script src="../js/datatables.min.js"></script>
-   
+    <script src="../logic/changePassword2.js"></script>
+
+  
 
     <script>
         $.get("/bill/read/<%=bill%>", function (data2) {
@@ -631,8 +701,13 @@
      
             $('#myModalLotes').modal();
         }
+
+
+        
         
     </script>
+
+
 
     <% if (bill) { %>
         <script>
